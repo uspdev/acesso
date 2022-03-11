@@ -14,7 +14,9 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "uspdev/laravel-usp-theme": "^2.4"
+        "uspdev/laravel-usp-theme": "^2.4",
+        "uspdev/replicado": "^1.10",
+        "uspdev/senhaunica-socialite": "^4.3"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -50,6 +52,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan vendor:publish --provider=\"Uspdev\\UspTheme\\ServiceProvider\" --tag=assets --force",
             "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
