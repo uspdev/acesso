@@ -14,6 +14,10 @@ class CreateAcessosTable extends Migration
     public function up()
     {
         Schema::create('acessos', function (Blueprint $table) {
+            $table->string('codpes');
+            $table->string('predio')->default('Biblioteca');
+            $table->string('nome');
+            $table->string('vacina');
             $table->id();
             $table->timestamps();
         });

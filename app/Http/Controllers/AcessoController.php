@@ -1,86 +1,44 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
-use App\Http\Requests\StoreAcessoRequest;
-use App\Http\Requests\UpdateAcessoRequest;
 use App\Models\Acesso;
 
 class AcessoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        //
+        $this->authorize('admin');
+        
+	    $acessos =  Acesso::paginate(30);
+
+        return view('acessos.index',[
+            'acessos' => $acessos
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('acessos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreAcessoRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreAcessoRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'codpes' => 'required|integer',
+        ]);
+
+        $acesso = new Acesso;
+        $acesso->codpes = $request->codpes;
+        $acesso->save();
+
+        return redirect('acessos/create');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Acesso  $acesso
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Acesso $acesso)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Acesso  $acesso
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Acesso $acesso)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateAcessoRequest  $request
-     * @param  \App\Models\Acesso  $acesso
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateAcessoRequest $request, Acesso $acesso)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Acesso  $acesso
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Acesso $acesso)
-    {
-        //
-    }
 }
