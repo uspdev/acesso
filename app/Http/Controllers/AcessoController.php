@@ -37,7 +37,7 @@ class AcessoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'codpes' => 'required|integer',
+            'codpes' => 'required',
         ]);
 
         $pessoa = Pessoa::dump($request->codpes);
