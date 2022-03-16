@@ -48,7 +48,7 @@ class AcessoController extends Controller
             $acesso->nome = $pessoa['nompes'];
             $acesso->vacina = Pessoa::obterSituacaoVacinaCovid19($request->codpes);
             $acesso->save();
-            $request->session()->flash('alert-success', 'Acesso registrado com sucesso!');
+            $request->session()->flash('alert-success', "Acesso registrado com sucesso! (Vacina: {$acesso->vacina})");
         } else {
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }
