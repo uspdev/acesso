@@ -18,7 +18,19 @@
                 <td>{{ $acesso->created_at->format('d/m/Y H:i:s') }}</td>
                 <td>{{ $acesso->codpes }}</td>
                 <td>{{ $acesso->nome }}</td>
-                <td>{{ $acesso->vacina }}</td> {{-- // TODO Destacar com cores os status como um semáforo (sugestão) --}}
+                @php
+                    if (in_array($acesso->vacina, config('acesso.statusCovid19verde'))) {
+                        $status = 'success';
+                    } elseif (in_array($acesso->vacina, config('acesso.statusCovid19amarelo'))) {
+                        $status = 'warning';
+                    } else {
+                        $status = 'danger';
+                    }
+                @endphp
+                <td>
+                    <span class="text-{{ $status }}"> <i class="fas fa-circle"></i></span>
+                    <span>{{ $acesso->vacina }}</span>
+                </td>
             </tr>
         @endforeach
         </tbody>
