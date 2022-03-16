@@ -18,9 +18,13 @@ class AcessoController extends Controller
     {
         $this->authorize('admin');
 
-	    $acessos =  Acesso::paginate(30);
+        // TODO Seria a melhor ordenação padrão?
+        $acessos = Acesso::orderBy('predio', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->orderBy('nome', 'asc')
+            ->paginate(100);
 
-        return view('acessos.index',[
+        return view('acessos.index', [
             'acessos' => $acessos
         ]);
     }
