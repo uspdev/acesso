@@ -15,7 +15,7 @@ class CreateAcessosTable extends Migration
     {
         Schema::create('acessos', function (Blueprint $table) {
             $table->string('codpes');
-            $table->string('predio')->default('Biblioteca');
+            $table->string('predio')->default('Prédio Principal'); # TODO Criar uma model para cadastrar os prédios
             $table->string('nome');
             $table->string('vacina');
             $table->id();
