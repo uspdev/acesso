@@ -1,7 +1,8 @@
 @extends('main')
 
 @section('content')
-    <table class="table table-sm table-striped table-hover"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
+    <h4>Acessos</h4>
+    <table class="table table-sm table-striped table-hover datatable"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
         <thead>
             <tr>
                 <th>Prédio</th>
@@ -14,7 +15,7 @@
         <tbody>
         @foreach ($acessos as $acesso)
             <tr>
-                <td>{{ $acesso->predio }}</td>
+                <td>{{ \App\Models\Predio::find($acesso->predio)->nome }}</td>
                 <td>{{ $acesso->created_at->format('d/m/Y H:i:s') }}</td>
                 <td>{{ $acesso->codpes }}</td>
                 <td>{{ $acesso->nome }}</td>

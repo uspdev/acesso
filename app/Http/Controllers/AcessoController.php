@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Acesso;
+use App\Models\Predio;
 
 use Uspdev\Replicado\Pessoa;
 
@@ -44,12 +45,19 @@ class AcessoController extends Controller
         if ($pessoa) {
             $acesso = new Acesso;
             $acesso->codpes = $request->codpes;
-            # $acesso->predio = ''; // TODO Quando tiver a model prédio pegar o prédio correto
+            $acesso->predio = Predio::find(1)->id; // TODO Quando tiver a model prédio pegar o prédio correto
             $acesso->nome = $pessoa['nompes'];
             $acesso->vacina = Pessoa::obterSituacaoVacinaCovid19($request->codpes);
             $acesso->save();
-            $request->session()->flash('alert-info', "Situação da vacina contra Covid19: {$acesso->vacina}");
-            $request->session()->flash('alert-success', "Acesso registrado com sucesso!");
+            if (in_array($acesso->vacina, config('acesso.statusCovid19verde'))) {
+                $status = 'success';
+            } elseif (in_array($acesso->vacina, config('acesso.statusCovid19amarelo'))) {
+                $status = 'warning';
+            } else {
+                $status = 'danger';
+            }
+            $request->session()->flash("alert-$status", "Situação da vacina contra Covid19: {$acesso->vacina}");
+            $request->session()->flash('alert-info', "Acesso registrado com sucesso!");
         } else {
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }

@@ -1,6 +1,7 @@
 @extends('main')
 
 @section('content')
+    <h4>Novo acesso</h4>
     <form method="POST" action="/acessos">
         @csrf
         Número USP: <input type="text" id="codpes" name="codpes">
