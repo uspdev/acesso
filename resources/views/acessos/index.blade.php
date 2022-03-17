@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('content')
-    <table class="table table-sm table-striped table-hover"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
+    <table class="table table-sm table-striped table-hover datatable"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
         <thead>
             <tr>
                 <th>Prédio</th>
