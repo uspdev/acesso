@@ -14,7 +14,7 @@
         </thead>
         <tbody>
         @foreach ($acessos as $acesso)
-            <tr>
+            <tr style="cursor: pointer;" onclick="location.href = 'acessos/{{ $acesso->id }}';">
                 <td>{{ $acesso->codpes }}</td>
                 <td>{{ $acesso->nome }}</td>
                 @php
@@ -39,3 +39,4 @@
         </tfoot>
     </table>
 @endsection
+
