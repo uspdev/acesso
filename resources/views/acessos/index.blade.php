@@ -1,6 +1,7 @@
 @extends('main')
 
 @section('content')
+    <h4>Acessos</h4>
     <table class="table table-sm table-striped table-hover datatable"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
         <thead>
             <tr>

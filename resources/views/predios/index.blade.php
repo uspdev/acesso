@@ -1,6 +1,7 @@
 @extends('main')
 
 @section('content')
+    <h4>Prédios</h4>
     <table class="table table-sm table-striped table-hover datatable">
         <thead>
             <tr>
