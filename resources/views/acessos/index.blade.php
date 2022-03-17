@@ -15,7 +15,7 @@
         <tbody>
         @foreach ($acessos as $acesso)
             <tr>
-                <td>{{ $acesso->predio }}</td>
+                <td>{{ \App\Models\Predio::find($acesso->predio)->nome }}</td>
                 <td>{{ $acesso->created_at->format('d/m/Y H:i:s') }}</td>
                 <td>{{ $acesso->codpes }}</td>
                 <td>{{ $acesso->nome }}</td>

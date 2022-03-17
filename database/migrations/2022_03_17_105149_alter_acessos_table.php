@@ -21,7 +21,7 @@ class AlterAcessosTable extends Migration
         });
 
         Schema::table('acessos', function (Blueprint $table) {
-            $table->integer('predio')->default(Predio::find(1)); # TODO pega o primeiro prédio cadastrado (melhorar)
+            $table->integer('predio');
             $table->string('vacina');
         });
     }
