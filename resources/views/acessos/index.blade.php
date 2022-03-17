@@ -5,18 +5,16 @@
     <table class="table table-sm table-striped table-hover datatable"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
         <thead>
             <tr>
-                <th>Prédio</th>
-                <th>Acesso</th>
                 <th>Nº USP</th>
                 <th>Nome</th>
                 <th>Vacina</th>
+                <th>Acesso</th>
+                <th>Prédio</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($acessos as $acesso)
-            <tr>
-                <td>{{ \App\Models\Predio::find($acesso->predio)->nome }}</td>
-                <td>{{ $acesso->created_at->format('d/m/Y H:i:s') }}</td>
+            <tr style="cursor: pointer;" onclick="location.href = 'acessos/{{ $acesso->id }}';">
                 <td>{{ $acesso->codpes }}</td>
                 <td>{{ $acesso->nome }}</td>
                 @php
@@ -32,6 +30,8 @@
                     <span class="text-{{ $status }}"> <i class="fas fa-circle"></i></span>
                     <span>{{ $acesso->vacina }}</span>
                 </td>
+                <td>{{ $acesso->created_at->format('d/m/Y H:i:s') }}</td>
+                <td>{{ \App\Models\Predio::find($acesso->predio)->nome }}</td>
             </tr>
         @endforeach
         </tbody>
@@ -39,3 +39,4 @@
         </tfoot>
     </table>
 @endsection
+

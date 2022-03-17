@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4feaac654a64cdd0179db6c11ccbe0b4",
+    "content-hash": "19f82168c8a0b54e8c143d6c5ff2433a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6061,6 +6061,45 @@
                 "source": "https://github.com/uspdev/senhaunica-socialite/tree/4.3.1"
             },
             "time": "2021-11-29T11:42:02+00:00"
+        },
+        {
+            "name": "uspdev/wsfoto",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uspdev/wsfoto.git",
+                "reference": "dbe91e3f466b6a0ff84974944f88e45a9d08e5d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uspdev/wsfoto/zipball/dbe91e3f466b6a0ff84974944f88e45a9d08e5d2",
+                "reference": "dbe91e3f466b6a0ff84974944f88e45a9d08e5d2",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Uspdev\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Thiago Gomes Verissimo",
+                    "email": "thiago.verissimo@usp.br",
+                    "homepage": "https://github.com/thiagogomesverissimo"
+                }
+            ],
+            "description": "Classe PHP que abstrai requisições SOAP do wsfoto USP",
+            "homepage": "https://github.com/uspdev/wsfoto",
+            "support": {
+                "issues": "https://github.com/uspdev/wsfoto/issues",
+                "source": "https://github.com/uspdev/wsfoto/tree/2.0.0"
+            },
+            "time": "2021-03-11T18:34:39+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

@@ -7,6 +7,7 @@ use App\Models\Acesso;
 use App\Models\Predio;
 
 use Uspdev\Replicado\Pessoa;
+use Uspdev\Wsfoto;
 
 class AcessoController extends Controller
 {
@@ -56,13 +57,22 @@ class AcessoController extends Controller
             } else {
                 $status = 'danger';
             }
-            $request->session()->flash("alert-$status", "Situação da vacina contra Covid19: {$acesso->vacina}");
-            $request->session()->flash('alert-info', "Acesso registrado com sucesso!");
+            $request->session()->flash('alert-success', "Acesso registrado com sucesso!");
         } else {
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }
 
-        return redirect('acessos/create');
+        return redirect("acessos/{$acesso->id}");
+    }
+
+    public function show(Request $request, $acesso)
+    {
+        $this->authorize('admin');
+
+        $acesso = Acesso::find($acesso);
+        $foto = \Uspdev\Wsfoto::obter($acesso->codpes);
+
+        return view('acessos.show', compact('acesso', 'foto'));
     }
 
 }
