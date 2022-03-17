@@ -2,7 +2,7 @@
 
 @section('content')
     <h4>Acessos</h4>
-    <table class="table table-sm table-striped table-hover datatable"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
+    <table class="table table-sm table-striped table-hover datatable-acessos"> {{-- // TODO Melhorar com filtros, ordenação e mostrar itens de paginação --}}
         <thead>
             <tr>
                 <th>Nº USP</th>
@@ -38,5 +38,36 @@
         <tfoot>
         </tfoot>
     </table>
+@endsection
+
+@section('javascripts_bottom')
+@parent
+<script>
+    $(document).ready(function() {
+        // DataTables
+        var table = $('.datatable-acessos').DataTable({
+            dom: 'Bfli<t>p'
+            , ordering: false
+            , order: ['3', 'asc'] /* ordenando por acesso desc */
+            , language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json'
+            }
+            , paging: true
+            , lengthChange: true
+            , searching: true
+            , info: true
+            , autoWidth: true
+            , lengthMenu: [
+                [10, 25, 50, 100, -1]
+                , ['10 linhas', '25 linhas', '50 linhas', '100 linhas', 'Mostar todos']
+            ]
+            , pageLength: -1
+            , buttons: [
+                'excelHtml5'
+                , 'csvHtml5'
+            ]
+        });
+    });
+</script>
 @endsection
 
