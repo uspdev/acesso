@@ -3,6 +3,11 @@
 
 $menu = [
     [
+        'text' => 'Prédios',
+        'url' => 'predios',
+        'can' => 'admin',
+    ],
+    [
         'text' => 'Acessos',
         'url' => 'acessos',
         'can' => 'admin',
@@ -27,7 +32,7 @@ return [
     # valor pode ser substituido pela aplicação.
     'title' => config('app.name'),
 
-    # USP_THEME_SKIN deve ser colocado no .env da aplicação 
+    # USP_THEME_SKIN deve ser colocado no .env da aplicação
     'skin' => env('USP_THEME_SKIN', 'uspdev'),
 
     # chave da sessão. Troque em caso de colisão com outra variável de sessão.
