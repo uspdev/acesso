@@ -22,4 +22,24 @@ class PredioController extends Controller
             'predios' => $predios
         ]);
     }
+
+    public function create()
+    {
+        return view('predios.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nome' => 'required',
+        ]);
+
+        $predio = new Predio;
+        $predio->nome = $request->nome;
+        $predio->save();
+
+        $request->session()->flash('alert-success', "Prédio cadastrado com sucesso!");
+
+        return redirect('predios');
+    }
 }

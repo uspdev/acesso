@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Acesso;
+use App\Models\Predio;
 
 use Uspdev\Replicado\Pessoa;
 
@@ -44,7 +45,7 @@ class AcessoController extends Controller
         if ($pessoa) {
             $acesso = new Acesso;
             $acesso->codpes = $request->codpes;
-            # $acesso->predio = ''; // TODO Quando tiver a model prédio pegar o prédio correto
+            $acesso->predio = Predio::find(1); // TODO Quando tiver a model prédio pegar o prédio correto
             $acesso->nome = $pessoa['nompes'];
             $acesso->vacina = Pessoa::obterSituacaoVacinaCovid19($request->codpes);
             $acesso->save();
