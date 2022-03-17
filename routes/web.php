@@ -10,3 +10,4 @@ Route::get('acessos/create',[AcessoController::class,'create']);
 Route::post('acessos',[AcessoController::class,'store']);
 
 Route::get('predios',[PredioController::class,'index']);
+Route::get('predios/create',[PredioController::class,'create']);
