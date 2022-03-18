@@ -5,5 +5,6 @@ $statusCovid19vermelho = explode(';', env('STATUS_COVID19_VERMELHO', ''));
 return [
     'statusCovid19verde' => $statusCovid19verde,
     'statusCovid19amarelo' => $statusCovid19amarelo,
-    'statusCovid19vermelho' => $statusCovid19vermelho
+    'statusCovid19vermelho' => $statusCovid19vermelho,
+    'rotaAposRegistroAcesso' => env('ROTA_APOS_REGISTRO_ACESSO', 'create')
 ];

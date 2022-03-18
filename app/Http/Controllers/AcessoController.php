@@ -61,8 +61,9 @@ class AcessoController extends Controller
         } else {
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }
+        $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? 'acessos/create' : "acessos/{$acesso->id}";
 
-        return redirect("acessos/{$acesso->id}");
+        return redirect($rota);
     }
 
     public function show(Request $request, $acesso)
