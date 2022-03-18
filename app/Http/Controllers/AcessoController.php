@@ -31,7 +31,7 @@ class AcessoController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         return view('acessos.create');
     }
@@ -41,12 +41,14 @@ class AcessoController extends Controller
         $request->validate([
             'codpes' => 'required',
         ]);
+        $arrUrl = explode('/', str_replace(url('/'), '', url()->previous()));
+        $predio = end($arrUrl);
 
         $pessoa = Pessoa::dump($request->codpes);
         if ($pessoa) {
             $acesso = new Acesso;
             $acesso->codpes = $request->codpes;
-            $acesso->predio = Predio::find(1)->id; // TODO Quando tiver a model prédio pegar o prédio correto
+            $acesso->predio = Predio::find($predio)->id;
             $acesso->nome = $pessoa['nompes'];
             $acesso->vacina = Pessoa::obterSituacaoVacinaCovid19($request->codpes);
             $acesso->save();
@@ -61,7 +63,7 @@ class AcessoController extends Controller
         } else {
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }
-        $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? 'acessos/create' : "acessos/{$acesso->id}";
+        $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? "acessos/create/{$acesso->predio}" : "acessos/{$acesso->id}";
 
         return redirect($rota);
     }

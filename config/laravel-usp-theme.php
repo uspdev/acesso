@@ -12,11 +12,12 @@ $menu = [
         'url' => 'acessos',
         'can' => 'admin',
     ],
-    [
-        'text' => 'Novo Acesso',
-        'url' => 'acessos/create',
-        'can' => 'admin',
-    ],
+    // Comentado porque deve-ser escolhoer primeiro um prédio
+    // [
+    //     'text' => 'Novo Acesso',
+    //     'url' => 'acessos/create',
+    //     'can' => 'admin',
+    // ],
 ];
 
 $right_menu = [

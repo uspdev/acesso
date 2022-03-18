@@ -4,8 +4,11 @@
     <h4>Novo acesso</h4>
     <form method="POST" action="/acessos">
         @csrf
-        Número USP: <input type="text" id="codpes" name="codpes">
-        <button type="submit" class="btn btn-success"> Enviar </button>
+        <div class="form-group">
+          <label for="codpes">Nº USP </label>
+          <input class="form-control w-25" type="text" id="codpes" name="codpes">
+          <button type="submit" class="btn btn-success mt-2"> Enviar </button>
+        </div>
     </form>
 @endsection
 
