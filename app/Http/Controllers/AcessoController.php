@@ -33,11 +33,20 @@ class AcessoController extends Controller
 
     public function create(Request $request)
     {
-        return view('acessos.create');
+        $this->authorize('admin');
+
+        $arrUrl = explode('/', str_replace(url('/'), '', url()->current()));
+        $predio = Predio::find(end($arrUrl));
+
+        return view('acessos.create', [
+            'predio' => $predio
+        ]);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('admin');
+
         $request->validate([
             'codpes' => 'required',
         ]);
