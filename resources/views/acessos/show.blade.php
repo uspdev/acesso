@@ -39,7 +39,7 @@
                     <ul class="list-group">
                         <li class='list-group-item'>
                             @foreach ($crachas as $cracha)
-                                {{ $cracha['nomvin'] }} &nbsp;
+                                {{ $cracha['nomvin'] }} - {{ $cracha['nomorg'] }}<br />
                             @endforeach
                         </li>
                     </ul>
