@@ -83,8 +83,9 @@ class AcessoController extends Controller
 
         $acesso = Acesso::find($acesso);
         $foto = \Uspdev\Wsfoto::obter($acesso->codpes);
+        $crachas = Pessoa::crachas($acesso->codpes);
 
-        return view('acessos.show', compact('acesso', 'foto'));
+        return view('acessos.show', compact('acesso', 'foto', 'crachas'));
     }
 
 }
