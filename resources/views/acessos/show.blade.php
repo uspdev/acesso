@@ -38,9 +38,11 @@
                     <div class="font-weight-bold"> Vínculos </div>
                     <ul class="list-group">
                         <li class='list-group-item'>
-                            @foreach ($crachas as $cracha)
+                            @forelse ($crachas as $cracha)
                                 {{ $cracha['nomvin'] }} - {{ $cracha['nomorg'] }}<br />
-                            @endforeach
+                            @empty
+                                Vínculo não encontrado
+                            @endforelse
                         </li>
                     </ul>
                 </div>
