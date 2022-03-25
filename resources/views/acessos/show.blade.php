@@ -34,6 +34,17 @@
                             <span>{{ $acesso->vacina }}</span>
                         </li>
                     </ul>
+                    <br />
+                    <div class="font-weight-bold"> Vínculos </div>
+                    <ul class="list-group">
+                        <li class='list-group-item'>
+                            @forelse ($crachas as $cracha)
+                                {{ $cracha['nomvin'] }} - {{ $cracha['nomorg'] }}<br />
+                            @empty
+                                Vínculo não encontrado
+                            @endforelse
+                        </li>
+                    </ul>
                 </div>
                 {{-- Coluna da direita --}}
                 <div class="col-md-6">

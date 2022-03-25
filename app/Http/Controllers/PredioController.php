@@ -25,11 +25,15 @@ class PredioController extends Controller
 
     public function create()
     {
+        $this->authorize('admin');
+
         return view('predios.create');
     }
 
     public function store(Request $request)
     {
+        $this->authorize('admin');
+
         $request->validate([
             'nome' => 'required',
         ]);

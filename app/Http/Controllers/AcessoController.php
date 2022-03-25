@@ -33,11 +33,21 @@ class AcessoController extends Controller
 
     public function create(Request $request)
     {
-        return view('acessos.create');
+        $this->authorize('admin');
+
+        $arrUrl = explode('/', str_replace(url('/'), '', url()->current()));
+
+        $predio = Predio::find(end($arrUrl));
+
+        return view('acessos.create', [
+            'predio' => $predio
+        ]);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('admin');
+
         $request->validate([
             'codpes' => 'required',
         ]);
@@ -74,8 +84,9 @@ class AcessoController extends Controller
 
         $acesso = Acesso::find($acesso);
         $foto = \Uspdev\Wsfoto::obter($acesso->codpes);
+        $crachas = Pessoa::listarCrachas($acesso->codpes);
 
-        return view('acessos.show', compact('acesso', 'foto'));
+        return view('acessos.show', compact('acesso', 'foto', 'crachas'));
     }
 
 }

@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('content')
-    <h4>Novo acesso</h4>
+    <h4>Novo acesso em <strong>{{ $predio->nome }}</strong></h4>
     <form method="POST" action="/acessos">
         @csrf
         <div class="form-group">
