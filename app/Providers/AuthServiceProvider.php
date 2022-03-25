@@ -25,6 +25,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('vigia', function ($user) {
+            if(Gate::allows('admin')) return true;
+            
+            if(empty($user->codpes)){
+                return true;
+            }
+            return false;
+        });
     }
 }

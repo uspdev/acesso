@@ -18,7 +18,11 @@
               </div>
         </form>
     @else
-        Você ainda não fez seu login com a senha única USP <a href="login"> Faça seu Login! </a>
+        Você ainda não fez seu login:
+        <ul> 
+            <li><a href="login"> com a senha única USP - Faça seu Login! </a></li>
+            <li><a href="login/vigia">  Login Vigia - Faça seu Login! </a></li>
+</ul>
     @endauth
 @endsection
 

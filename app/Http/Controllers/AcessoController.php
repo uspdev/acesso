@@ -33,7 +33,7 @@ class AcessoController extends Controller
 
     public function create(Request $request)
     {
-        $this->authorize('admin');
+        $this->authorize('vigia');
 
         $arrUrl = explode('/', str_replace(url('/'), '', url()->current()));
 
@@ -46,7 +46,7 @@ class AcessoController extends Controller
 
     public function store(Request $request)
     {
-        $this->authorize('admin');
+        $this->authorize('vigia');
 
         $request->validate([
             'codpes' => 'required',
@@ -80,7 +80,7 @@ class AcessoController extends Controller
 
     public function show(Request $request, $acesso)
     {
-        $this->authorize('admin');
+        $this->authorize('vigia');
 
         $acesso = Acesso::find($acesso);
         $foto = \Uspdev\Wsfoto::obter($acesso->codpes);

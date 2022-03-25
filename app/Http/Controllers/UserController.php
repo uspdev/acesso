@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $this->authorize('admin');
 
-        $usuarios = User::all();
+        $usuarios = User::where('codpes',NULL)->get();
 
         return view('usuarios.index', [
             'usuarios' => $usuarios
@@ -39,7 +39,6 @@ class UserController extends Controller
         $usuario = new User;
         $usuario->name = $request->name;
         $usuario->email = $request->email;
-        $usuario->role = 'user';
         $usuario->password = Hash::make($request->password);
         $usuario->save();
 
