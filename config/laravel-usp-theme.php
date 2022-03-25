@@ -3,11 +3,6 @@
 
 $menu = [
     [
-        'text' => 'Prédios',
-        'url' => 'predios',
-        'can' => 'admin',
-    ],
-    [
         'text' => 'Acessos',
         'url' => 'acessos',
         'can' => 'admin',
@@ -18,6 +13,16 @@ $menu = [
     //     'url' => 'acessos/create',
     //     'can' => 'admin',
     // ],
+    [
+        'text' => 'Prédios',
+        'url' => 'predios',
+        'can' => 'admin',
+    ],
+    [
+        'text' => 'Usuários',
+        'url' => 'usuarios',
+        'can' => 'admin',
+    ],
 ];
 
 $right_menu = [

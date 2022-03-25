@@ -14,7 +14,12 @@ class AlterUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('codpes');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
             $table->string('role')->default('user');
+            $table->integer('codpes')->nullable();
         });
     }
 

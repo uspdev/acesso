@@ -36,6 +36,7 @@ class AcessoController extends Controller
         $this->authorize('admin');
 
         $arrUrl = explode('/', str_replace(url('/'), '', url()->current()));
+
         $predio = Predio::find(end($arrUrl));
 
         return view('acessos.create', [
