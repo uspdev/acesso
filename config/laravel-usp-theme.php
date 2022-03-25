@@ -19,7 +19,7 @@ $menu = [
         'can' => 'admin',
     ],
     [
-        'text' => 'Usuários',
+        'text' => 'Vigias',
         'url' => 'usuarios',
         'can' => 'admin',
     ],

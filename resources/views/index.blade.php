@@ -18,11 +18,20 @@
               </div>
         </form>
     @else
-        Você ainda não fez seu login:
-        <ul> 
-            <li><a href="login"> com a senha única USP - Faça seu Login! </a></li>
-            <li><a href="login/vigia">  Login Vigia - Faça seu Login! </a></li>
-</ul>
+        <div class="row">
+            <div class="col-sm">
+                <a href="login/vigia" class="btn btn-success">
+                    <i class="fa fa-user-shield" aria-hidden="true"></i>
+                  Vigia
+                </a>
+            </div>
+            <div class="col-sm">
+                <a href="login" class="btn btn-success">
+                  <i class="fa fa-university" aria-hidden="true"></i>
+                  Senha única USP
+                </a>
+            </div>
+        </div>
     @endauth
 @endsection
 
