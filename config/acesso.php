@@ -9,4 +9,5 @@ return [
     'statusCovid19vermelho' => $statusCovid19vermelho,
     'rotaAposRegistroAcesso' => env('ROTA_APOS_REGISTRO_ACESSO', 'create'),
     'admins' => env('SENHAUNICA_ADMINS'),
+    'registrosPorPagina' => env('REGISTROS_POR_PAGINA', 100),
 ];

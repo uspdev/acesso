@@ -38,6 +38,10 @@
         <tfoot>
         </tfoot>
     </table>
+
+    {{-- Paginação --}}
+    @include('acessos.partials.nav')
+
 @endsection
 
 @section('javascripts_bottom')
@@ -46,7 +50,7 @@
     $(document).ready(function() {
         // DataTables
         var table = $('.datatable-acessos').DataTable({
-            dom: 'Bfli<t>p'
+            dom: 'Bf<t>'
             , ordering: false
             , order: ['3', 'asc'] /* ordenando por acesso desc */
             , language: {
