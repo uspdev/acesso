@@ -14,9 +14,9 @@
         </thead>
         <tbody>
         @foreach ($acessos as $acesso)
-            <tr style="cursor: pointer;" onclick="location.href = 'acessos/{{ $acesso->id }}';">
+            <tr>
                 <td>{{ $acesso->codpes }}</td>
-                <td>{{ $acesso->nome }}</td>
+                <td><a href="acessos/{{ $acesso->id }}">{{ $acesso->nome }}</a></td>
                 @php
                     if (in_array($acesso->vacina, config('acesso.statusCovid19verde'))) {
                         $status = 'success';
