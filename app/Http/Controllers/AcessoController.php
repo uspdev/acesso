@@ -16,18 +16,31 @@ class AcessoController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('admin');
 
+        // Registros por página
+        $perPage = empty($request->perPage) ? config('acesso.registrosPorPagina') : $request->perPage;
+
         // TODO Seria a melhor ordenação padrão?
-        $acessos = Acesso::orderBy('predio', 'asc')
-            ->orderBy('created_at', 'desc')
-            ->orderBy('nome', 'asc')
-            ->paginate(100);
+        $acessos = Acesso::orderBy('created_at', 'desc')->paginate($perPage);
+
+        // Paginando
+        $nav['total'] = $acessos->total();
+        // pagina começa no 0 mas vamos mostrar começando no 1
+        $nav['pagCor'] = $acessos->currentPage();
+        $nav['perPag'] = $acessos->perPage();
+        $nav['totPag'] = $acessos->lastPage();
+
+        $maxLnk = 5; # Máximo de links
+        $lnkLat = ceil($maxLnk / 2); # Cálculo dos links laterais
+        $nav['pagIni'] = $nav['pagCor'] - $lnkLat; # Início dos links (esquerda)
+        $nav['pagFin'] = $nav['pagCor'] + $lnkLat; # Fim dos links (direita)
 
         return view('acessos.index', [
-            'acessos' => $acessos
+            'acessos' => $acessos,
+            'nav' => $nav
         ]);
     }
 
@@ -69,11 +82,12 @@ class AcessoController extends Controller
             } else {
                 $status = 'danger';
             }
+            $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? "acessos/create/{$acesso->predio}" : "acessos/{$acesso->id}";
             $request->session()->flash('alert-success', "Acesso registrado com sucesso!");
         } else {
+            $rota = "acessos/create/{$predio}";
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }
-        $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? "acessos/create/{$acesso->predio}" : "acessos/{$acesso->id}";
 
         return redirect($rota);
     }
