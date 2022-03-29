@@ -1,8 +1,9 @@
 @extends('main')
 @section('content')
+<h4>Login Vigia</h4>
 <form method="POST" action="/login/vigia">
     @csrf
-    
+
     <div class="form-group row">
         <label for="email" class="col-sm-4 col-form-label text-md-right">Email</label>
         <div class="col-md-6">

@@ -17,9 +17,7 @@ Route::get('predios',[PredioController::class,'index']);
 Route::get('predios/create',[PredioController::class,'create']);
 Route::post('predios',[PredioController::class,'store']);
 
-Route::get('usuarios',[UserController::class,'index']);
-Route::get('usuarios/create',[UserController::class,'create']);
-Route::post('usuarios',[UserController::class,'store']);
+Route::resource('usuarios', UserController::class);
 
 Route::get('login/vigia',[LoginController::class,'showLoginForm']);
 Route::post('login/vigia', [LoginController::class, 'login']);

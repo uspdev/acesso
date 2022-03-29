@@ -50,4 +50,41 @@ class UserController extends Controller
             'usuarios' => $usuarios
         ]);
     }
+
+    public function edit(User $user, Request $request)
+    {
+        $this->authorize('admin');
+
+        $userId = explode('/', $request->getPathInfo())[2];
+
+        $usuario = User::find($userId);
+
+        return view('usuarios.edit', [
+            'usuario' => $usuario
+        ]);
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $this->authorize('admin');
+
+        $userId = explode('/', $request->getPathInfo())[2];
+
+        $usuario = User::find($userId);
+
+        $usuario->name = $request->name;
+        if ($request->password != '') {
+            $usuario->password = Hash::make($request->password);
+        }
+        $usuario->save();
+
+        $usuarios = User::all();
+
+        $request->session()->flash('alert-success', "Usuário salvo com sucesso!");
+
+        return view('usuarios.index', [
+            'usuarios' => $usuarios
+        ]);
+    }
+
 }
