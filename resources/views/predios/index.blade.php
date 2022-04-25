@@ -12,7 +12,7 @@
         <tbody>
         @foreach ($predios as $predio)
             <tr>
-                <td>{{ $predio->nome }}</td>
+                <td><a href="acessos/create/{{ $predio->id }}">{{ $predio->nome }}</a></td>
             </tr>
         @endforeach
         </tbody>
