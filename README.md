@@ -1,1 +1,1 @@
-Controle de acesso nas portarias
+Controle de acesso nas portarias por meio de verificação da vacina do COVID 19
