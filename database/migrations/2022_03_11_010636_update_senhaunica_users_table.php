@@ -21,7 +21,7 @@ class UpdateSenhaunicaUsersTable extends Migration
                     if ('sqlite' === Schema::connection($this->getConnection())->getConnection()->getDriverName()) {
                     $table->integer('codpes')->nullable();
                 } else {
-                    $table->integer('codpes');
+                    $table->integer('codpes')->nullable();
                 }
             }
         });

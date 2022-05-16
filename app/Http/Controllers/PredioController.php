@@ -22,7 +22,7 @@ class PredioController extends Controller
             'predios' => $predios
         ]);
     }
-
+    
     public function create()
     {
         $this->authorize('admin');
@@ -45,5 +45,45 @@ class PredioController extends Controller
         $request->session()->flash('alert-success', "Prédio cadastrado com sucesso!");
 
         return redirect('predios');
+    }
+    public function edit(Predio $predio, Request $request)
+    {
+        $this->authorize('admin');
+
+        $predioId = explode('/', $request->getPathInfo())[2];
+
+        $predio = Predio::find($predioId);
+
+        return view('predios.edit', [
+            'predio' => $predio
+        ]);
+    }
+    public function update(Request $request, Predio $predio) 
+    {
+        $this->authorize('admin');
+
+        $predioId = explode('/', $request->getPathInfo())[2];
+
+        $predio = Predio::find($predioId); 
+
+        $predio->nome = $request->nome;
+        
+        $predio->save();
+
+        $predios = Predio::all(); 
+
+        
+
+        return view('predios.index', [
+            'predios' => $predios
+        ]);
+    }
+    public function destroy(Predio $predio){
+        $this->authorize('admin');
+        if ($predio->acessos->isNotEmpty()){
+            return redirect('/predios')->with('alert-danger', 'Existem registros de acessos deste prédio!');
+        }
+        $predio->delete();
+        return  redirect('/predios');
     }
 }

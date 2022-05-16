@@ -71,7 +71,7 @@ class AcessoController extends Controller
         if ($pessoa) {
             $acesso = new Acesso;
             $acesso->codpes = $request->codpes;
-            $acesso->predio = Predio::find($predio)->id;
+            $acesso->predio_id = Predio::find($predio)->id;
             $acesso->nome = $pessoa['nompes'];
             $acesso->vacina = Pessoa::obterSituacaoVacinaCovid19($request->codpes);
             $acesso->save();

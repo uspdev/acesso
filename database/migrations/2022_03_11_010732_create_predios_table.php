@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersTable extends Migration
+class CreatePrediosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('codpes');
-        });
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('codpes')->nullable();
+        Schema::create('predios', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome')->unique();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +27,6 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('predios');
     }
 }
