@@ -16,6 +16,9 @@ Route::get('acessos/{acesso}',[AcessoController::class,'show']);
 Route::get('predios',[PredioController::class,'index']);
 Route::get('predios/create',[PredioController::class,'create']);
 Route::post('predios',[PredioController::class,'store']);
+Route::get('predios/{predio}/edit/',[PredioController::class,'edit']);
+Route::patch('predios/{predio}', [PredioController::class, 'update']);
+Route::delete('predios/{predio}', [PredioController::class, 'destroy']);
 
 Route::resource('usuarios', UserController::class);
 
