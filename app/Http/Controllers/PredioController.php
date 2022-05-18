@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Predio;
+use App\Http\Requests\PredioRequest;
 
 class PredioController extends Controller
 {
@@ -22,7 +23,7 @@ class PredioController extends Controller
             'predios' => $predios
         ]);
     }
-    
+
     public function create()
     {
         $this->authorize('admin');
@@ -30,54 +31,35 @@ class PredioController extends Controller
         return view('predios.create');
     }
 
-    public function store(Request $request)
+    public function store(PredioRequest $request)
     {
         $this->authorize('admin');
 
-        $request->validate([
-            'nome' => 'required',
-        ]);
+        Predio::create($request->validated());
 
-        $predio = new Predio;
-        $predio->nome = $request->nome;
-        $predio->save();
-
-        $request->session()->flash('alert-success', "Prédio cadastrado com sucesso!");
-
-        return redirect('predios');
+        return redirect('predios')->with('alert-success', "Prédio cadastrado com sucesso!");
     }
+
     public function edit(Predio $predio, Request $request)
     {
         $this->authorize('admin');
-
-        $predioId = explode('/', $request->getPathInfo())[2];
-
-        $predio = Predio::find($predioId);
 
         return view('predios.edit', [
             'predio' => $predio
         ]);
     }
-    public function update(Request $request, Predio $predio) 
+
+    public function update(PredioRequest $request, Predio $predio)
     {
         $this->authorize('admin');
 
-        $predioId = explode('/', $request->getPathInfo())[2];
-
-        $predio = Predio::find($predioId); 
-
-        $predio->nome = $request->nome;
-        
-        $predio->save();
-
-        $predios = Predio::all(); 
-
-        
+        $predio->update($request->validated());
 
         return view('predios.index', [
-            'predios' => $predios
+            'predios' => Predio::all(),
         ]);
     }
+
     public function destroy(Predio $predio){
         $this->authorize('admin');
         if ($predio->acessos->isNotEmpty()){

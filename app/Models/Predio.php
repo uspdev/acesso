@@ -9,6 +9,9 @@ use App\Models\Acesso;
 class Predio extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nome'];
+
     public function acessos(){
         return $this->hasMany(Acesso::class);
     }

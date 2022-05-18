@@ -31,7 +31,7 @@
                     <span>{{ $acesso->vacina }}</span>
                 </td>
                 <td>{{ $acesso->created_at->format('d/m/Y H:i:s') }}</td>
-                <td>{{ \App\Models\Predio::find($acesso->predio_id)->nome }}</td>
+                <td>{{ $acesso->predio->nome }}</td>
             </tr>
         @endforeach
         </tbody>
