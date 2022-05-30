@@ -3,20 +3,24 @@
 @section('content')
     @auth
         <h4>Escolha um prédio</h4>
-
+        <table class="table table-sm table-striped table-hover datatable">
+        <thead>
+            <tr>
+                <th>Prédios</th>
+            </tr>
+        </thead>
         <form>
             @csrf
             <div class="form-group">
-                <label for="predio">Prédio </label>
-                <select class="form-control w-50" id="predio">
-                    @forelse ($predios as $predio)
-                        <option onclick="location.href = 'acessos/create/{{ $predio->id }}';">{{ $predio->nome }}</option>
-                    @empty
-                        <option>Nenhum prédio cadastrado</option>
-                    @endforelse
-                </select>
+                <label for="predio"> </label>
+                @foreach ($predios as $predio)
+                <tr>
+                    <td><a href="acessos/create/{{ $predio->id }}" name ="predio-nome">{{ $predio->nome }}</a></td>
+                </tr>
+        @endforeach
               </div>
         </form>
+        </table>
     @else
         <div class="row">
             <div class="col-sm">
