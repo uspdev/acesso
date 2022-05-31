@@ -24,7 +24,7 @@ class PredioRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required',
+            'nome' => 'required|unique:predios',
         ];
     }
 
@@ -32,6 +32,7 @@ class PredioRequest extends FormRequest
     {
         return [
             'nome.required' => "O nome do prédio é requerido.",
+            'nome.unique' => "Já existe um prédio cadastrado com esse nome."
         ];
     }
 
