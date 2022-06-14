@@ -82,10 +82,10 @@ class AcessoController extends Controller
             } else {
                 $status = 'danger';
             }
-            $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? "acessos/create/{$acesso->predio}" : "acessos/{$acesso->id}";
+            $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? "acessos/create/{$acesso->predio_id}" : "acessos/{$acesso->id}";
             $request->session()->flash('alert-success', "Acesso registrado com sucesso!");
         } else {
-            $rota = "acessos/create/{$predio}";
+            $rota = "acessos/create/{$acesso->predio_id}";
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }
 
