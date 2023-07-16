@@ -10,7 +10,7 @@
                 <div class="col-md-6">
                     <div class="font-weight-bold"> Prédio </div>
                     <ul class="list-group">
-                        <li class='list-group-item'>{{ \App\Models\Predio::find($acesso->predio)->nome }}</li>
+                        <li class='list-group-item'>{{ $acesso->predio->nome }}</li>
                     </ul>
                     <br />
                     <div class="font-weight-bold"> Data e hora </div>

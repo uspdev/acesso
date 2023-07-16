@@ -24,7 +24,7 @@ class AcessoController extends Controller
         $perPage = empty($request->perPage) ? config('acesso.registrosPorPagina') : $request->perPage;
 
         // TODO Seria a melhor ordenação padrão?
-        $acessos = Acesso::orderBy('created_at', 'desc')->paginate($perPage);
+        $acessos = Acesso::with('predio')->orderBy('created_at', 'desc')->paginate($perPage);
 
         // Paginando
         $nav['total'] = $acessos->total();
@@ -71,7 +71,7 @@ class AcessoController extends Controller
         if ($pessoa) {
             $acesso = new Acesso;
             $acesso->codpes = $request->codpes;
-            $acesso->predio = Predio::find($predio)->id;
+            $acesso->predio_id = Predio::find($predio)->id;
             $acesso->nome = $pessoa['nompes'];
             $acesso->vacina = Pessoa::obterSituacaoVacinaCovid19($request->codpes);
             $acesso->save();
@@ -82,21 +82,20 @@ class AcessoController extends Controller
             } else {
                 $status = 'danger';
             }
-            $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? "acessos/create/{$acesso->predio}" : "acessos/{$acesso->id}";
+            $rota = (config('acesso.rotaAposRegistroAcesso') == 'create') ? "acessos/create/{$acesso->predio_id}" : "acessos/{$acesso->id}";
             $request->session()->flash('alert-success', "Acesso registrado com sucesso!");
         } else {
-            $rota = "acessos/create/{$predio}";
+            $rota = "acessos/create/{$acesso->predio_id}";
             $request->session()->flash('alert-danger', 'Pessoa não encontrada nos sistemas USP!');
         }
 
         return redirect($rota);
     }
 
-    public function show(Request $request, $acesso)
+    public function show(Request $request, Acesso $acesso)
     {
         $this->authorize('vigia');
-
-        $acesso = Acesso::find($acesso);
+        $acesso = $acesso->load('predio');
         $foto = \Uspdev\Wsfoto::obter($acesso->codpes);
         $crachas = Pessoa::listarCrachas($acesso->codpes);
 

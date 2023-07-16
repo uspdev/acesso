@@ -13,13 +13,15 @@ class CreateAcessosTable extends Migration
      */
     public function up()
     {
-        Schema::create('acessos', function (Blueprint $table) {
+        Schema::create('acessos', function (Blueprint $table) {                        
             $table->string('codpes');
-            $table->string('predio')->default('Prédio Principal'); # TODO Criar uma model para cadastrar os prédios
+            $table->unsignedBigInteger('predio_id');
             $table->string('nome');
             $table->string('vacina')->default('Não cadastrado'); # TODO Será que é o melhor lugar para registar os que não cadastraram a informação sobre covid19?
             $table->id();
             $table->timestamps();
+            $table->foreign('predio_id')->references('id')->on('predios');
+            
         });
     }
 
