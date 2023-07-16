@@ -18,7 +18,8 @@
         "uspdev/laravel-usp-theme": "^2.4",
         "uspdev/replicado": "^1.11",
         "uspdev/senhaunica-socialite": "^4.3",
-        "uspdev/wsfoto": "^2.0"
+        "uspdev/wsfoto": "^2.0",
+        "yajra/laravel-datatables-oracle": "^9.20"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
